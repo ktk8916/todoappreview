@@ -134,9 +134,10 @@ class TodoControllerTest {
         @Test
         @DisplayName("타이틀로 가져오기")
         void likeTitle() throws Exception{
+            //데이터가 t + index 형태로 들어가서 t -> t1 으로 테스트 수정
             mockMvc.perform(
                             get("/api/v1/todo")
-                                    .param("title", "t")
+                                    .param("title", "t1")
                     )
                     .andExpect(
                             status().isOk())
@@ -146,10 +147,10 @@ class TodoControllerTest {
                             jsonPath("$.content.[0].id").isNotEmpty())
                     .andExpect(
                             jsonPath("$.content.[0].title")
-                                    .value("t"))
+                                    .value("t1"))
                     .andExpect(
                             jsonPath("$.content.[0].content")
-                                    .value("t"))
+                                    .value("t1"))
                     .andExpect(jsonPath("$.totalElements")
                             .value(1))
             ;
