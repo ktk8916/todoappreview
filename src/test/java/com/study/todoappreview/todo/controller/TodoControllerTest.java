@@ -252,7 +252,7 @@ class TodoControllerTest {
         void loeAndGoe() throws Exception{
             mockMvc.perform(
                             get("/api/v1/todo")
-                                    .param("likeGoe", "10")
+                                    .param("likeLoe", "10")
                                     .param("likeGoe", "15")
                     )
                     .andExpect(
