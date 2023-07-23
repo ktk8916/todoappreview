@@ -67,6 +67,8 @@ public class TodoService {
 
         //컨텐츠는 항상 like 고정
         StringBuilder jpql = new StringBuilder("select t from Todo t where t.content like :content");
+        
+        //검색조건별 총 page total count를 위한 쿼리
         StringBuilder countJpql = new StringBuilder("select count(t) from Todo t where t.content like :content");
         Map<String, Object> params = new HashMap<>();
 
