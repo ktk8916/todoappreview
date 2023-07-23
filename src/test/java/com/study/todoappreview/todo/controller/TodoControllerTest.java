@@ -242,9 +242,9 @@ class TodoControllerTest {
                     .andExpect(
                             status().isOk())
                     .andExpect(
-                            jsonPath("$.content", hasSize(6)))
+                            jsonPath("$.content", hasSize(7)))
                     .andExpect(jsonPath("$.totalElements")
-                            .value(6))
+                            .value(7))
             ;
         }
         @Test
@@ -309,6 +309,7 @@ class TodoControllerTest {
                 new Member(null, email, password
                         , "name", 10, new ArrayList<>(), null);
 
+        // 이부분에 save 되는 좋아요 5개 이하인 todo가 7개인듯
         this.member = memberRepository.save(member);
         this.todo = todoRepository.save(
                 new Todo(null, "a", "a"
