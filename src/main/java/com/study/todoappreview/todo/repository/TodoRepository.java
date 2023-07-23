@@ -10,4 +10,6 @@ import java.util.List;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     Page<Todo> findByContentLike(String content, Pageable pageable);
+    Page<Todo> findByContentLikeAndIsDone(String content, boolean isDone, Pageable pageable);
+
 }

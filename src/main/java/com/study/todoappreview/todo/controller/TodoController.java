@@ -27,15 +27,17 @@ public class TodoController {
     public Page<TodoResponse> searchTodo(
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "content", required = false, defaultValue = "") String content,
+            @RequestParam(value = "isDone", required = false) Boolean isDone,
             @RequestParam(value = "likeLoe", required = false) Integer likeLoe,
             @RequestParam(value = "likeGoe", required = false) Integer likeGoe,
             @RequestParam(value = "page" , required = false, defaultValue = "0") Integer page,
             @RequestParam(value = "size" , required = false, defaultValue = "20") Integer size
     ){
         PageRequest pageRequest = PageRequest.of(page, size);
-        return todoService.searchTodo(
+        return todoService.searchTodoByCondition(
                 title,
                 content,
+                isDone,
                 likeLoe,
                 likeGoe,
                 pageRequest);
