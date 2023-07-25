@@ -253,6 +253,7 @@ class TodoControllerTest {
         void loeAndGoe() throws Exception{
             mockMvc.perform(
                             get("/api/v1/todo")
+                                    //둘 다 likeGoe였어서 바꿈
                                     .param("likeLoe", "10")
                                     .param("likeGoe", "15")
                     )
