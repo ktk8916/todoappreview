@@ -13,6 +13,7 @@ import java.util.Date;
 @Slf4j
 public class LoggingAspect {
 
+    @Around("execution(* com.study.todoappreview.*.controller.*.*(..))")
     public Object controllerLoggingAround(ProceedingJoinPoint point) throws Throwable {
         long startTime = new Date().getTime();
 

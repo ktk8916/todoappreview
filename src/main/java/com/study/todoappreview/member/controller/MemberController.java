@@ -1,6 +1,7 @@
 package com.study.todoappreview.member.controller;
 
 import com.study.todoappreview.global.aspect.TokenRequired;
+import com.study.todoappreview.member.domain.dto.MemberCondition;
 import com.study.todoappreview.member.domain.request.LoginRequest;
 import com.study.todoappreview.member.domain.request.SignupRequest;
 import com.study.todoappreview.member.domain.response.LoginResponse;
@@ -33,11 +34,12 @@ public class MemberController {
     }
 
     @GetMapping
-    public Page<MemberResponse> findAll(
+    public Page<MemberResponse> findAllByCondition(
+            MemberCondition memberCondition,
             @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
             @RequestParam(name = "size", required = false, defaultValue = "3") Integer size){
 
-        return memberService.findAll(PageRequest.of(page, size));
+        return memberService.findAllByCondition(memberCondition, PageRequest.of(page, size));
     }
 
     @GetMapping("/test")

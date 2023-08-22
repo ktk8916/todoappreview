@@ -2,6 +2,7 @@ package com.study.todoappreview.member.service;
 
 import com.study.todoappreview.global.auth.AuthService;
 import com.study.todoappreview.global.login.service.MemberLoginService;
+import com.study.todoappreview.member.domain.dto.MemberCondition;
 import com.study.todoappreview.member.domain.entity.Member;
 import com.study.todoappreview.member.domain.response.MemberResponse;
 import com.study.todoappreview.member.exception.DuplicateEmailException;
@@ -28,8 +29,8 @@ public class MemberService {
     private final MemberLoginService memberLoginService;
     private final AuthService authService;
 
-    public Page<MemberResponse> findAll(PageRequest pageRequest){
-        Page<Member> members = memberRepository.findAllBy(pageRequest);
+    public Page<MemberResponse> findAllByCondition(MemberCondition memberCondition, PageRequest pageRequest){
+        Page<Member> members = memberRepository.findAllByCondition(memberCondition, pageRequest);
         return members.map(MemberResponse::from);
     }
 

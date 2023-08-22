@@ -1,9 +1,11 @@
 package com.study.todoappreview.todo.service;
 
 import com.study.todoappreview.global.login.domain.dto.MemberDto;
+import com.study.todoappreview.todo.domain.dto.TodoCondition;
 import com.study.todoappreview.todo.domain.entity.Todo;
 import com.study.todoappreview.todo.domain.request.TodoRequest;
 import com.study.todoappreview.todo.domain.response.TodoResponse;
+import com.study.todoappreview.todo.repository.CustomTodoRepository;
 import com.study.todoappreview.todo.repository.TodoRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -61,6 +64,18 @@ public class TodoService {
         //like테이블 만들고 memberdto로 추가하는 과정 넣어야 함
         todo.increaseLikeCount();
 
+    }
+
+    public List<TodoResponse> findAllByCondition(TodoCondition todoCondition, Pageable pageable){
+        return todoRepository.findAllByCondition(todoCondition, pageable)
+                .stream()
+                .map(TodoResponse::from)
+                .collect(Collectors.toList());
+    }
+
+    public Page<TodoResponse> findAllByConditionToPage(TodoCondition todoCondition, Pageable pageable){
+        return todoRepository
+                .findAllByConditionToPage(todoCondition, pageable);
     }
 
     public Page<TodoResponse> searchTodoByCondition(String title, String content, Boolean isDone, Integer likeLoe, Integer likeGoe, PageRequest pageRequest) {
